@@ -30,8 +30,9 @@ public class CountryDao extends JdbcDaoSupport {
     private static final CountryRowMapper COUNTRY_ROW_MAPPER = new CountryRowMapper();
 
     public List<Country> getCountryList() {
-        // TODO: implement it
-        return null;
+        JdbcTemplate jdbcTemplate = getJdbcTemplate();
+        String sql = GET_ALL_COUNTRIES_SQL;
+        return jdbcTemplate.query(sql, COUNTRY_ROW_MAPPER);
     }
 
     public List<Country> getCountryListStartWith(String name) {
@@ -44,7 +45,9 @@ public class CountryDao extends JdbcDaoSupport {
     }
 
     public void updateCountryName(String codeName, String newCountryName) {
-        // TODO: implement it
+        JdbcTemplate jdbcTemplate = getJdbcTemplate();
+        String sql = UPDATE_COUNTRY_NAME_SQL_1 + newCountryName +  "'" + UPDATE_COUNTRY_NAME_SQL_2 + codeName + "'";
+        jdbcTemplate.execute(sql);
     }
 
     public void loadCountries() {

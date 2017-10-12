@@ -35,7 +35,6 @@ class JdbcTest{
         countryDao.loadCountries();
     }
 
-    
     @Test
     @DirtiesContext
     void testCountryList() {
