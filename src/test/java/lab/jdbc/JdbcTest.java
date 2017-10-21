@@ -39,7 +39,7 @@ class JdbcTest{
     @Test
     @DirtiesContext
     void testCountryList() {
-        List<Country> countryList = countryDao.getCountryList();
+        List<Country> countryList = countryDao.getAllCountries();
         assertNotNull(countryList);
         assertEquals(expectedCountryList.size(), countryList.size());
         for (int i = 0; i < expectedCountryList.size(); i++) {

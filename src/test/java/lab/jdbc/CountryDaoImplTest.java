@@ -1,6 +1,7 @@
 package lab.jdbc;
 
 import lab.dao.CountryDao;
+import lab.dao.CountryNotFoundException;
 import lab.model.Country;
 import lab.model.simple.SimpleCountry;
 import org.apache.commons.logging.Log;
@@ -51,7 +52,12 @@ public class CountryDaoImplTest {
     @Test
     void testGetCountryByName() {
         countryDao.save(exampleCountry);
-        Country country = countryDao.getCountryByName("Australia");
+        Country country = null;
+        try {
+            country = countryDao.getCountryByName("Australia");
+        } catch (CountryNotFoundException e) {
+            e.printStackTrace();
+        }
         assertEquals(exampleCountry, country);
     }
 

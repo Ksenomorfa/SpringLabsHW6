@@ -10,6 +10,6 @@ public interface CountryDao {
 
 	List<Country> getAllCountries();
 
-	Country getCountryByName(String name);
+	Country getCountryByName(String name) throws CountryNotFoundException;
 
 }
