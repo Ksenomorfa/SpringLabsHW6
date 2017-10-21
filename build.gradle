@@ -3,16 +3,12 @@ allprojects {
     version = '1.0-SNAPSHOT'
 }
 apply plugin: 'java'
-sourceCompatibility =
-        targetCompatibility = 1.8//9
+sourceCompatibility = targetCompatibility = 1.8
 
 compileJava {
-    sourceCompatibility =
-    targetCompatibility = 1.8//9
+    sourceCompatibility = targetCompatibility = 1.8
     options.with {
         fork = true
-//        forkOptions.javaHome = new File ('')//java_home
-//        compilerArgs.addAll(['--add-exports', 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED'])
     }
 }
 
@@ -44,12 +40,19 @@ dependencies {
             'com.mchange:c3p0:+',
             'org.springframework:spring-jdbc:+',
 
+            // ORM
+            'org.hibernate:hibernate-spatial:+',
+            'org.hibernate:hibernate-validator:+',
+            'org.hibernate:hibernate-java8:+',
+            'org.hibernate:hibernate-core:+',
+            'org.springframework:spring-orm:+',
+
             // Common
             'org.apache.logging.log4j:log4j-core:+'
 
     runtime 'com.h2database:h2:+'
 
-    testCompile 'org.junit.jupiter:junit-jupiter-params:+',
+    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
             'org.hamcrest:java-hamcrest:+',
             'org.springframework:spring-test:+'
 
@@ -61,10 +64,4 @@ task Wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
     gradleVersion = '4.2.1'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
-
-test {
-    beforeTest { descriptor ->
-        logger.lifecycle("Running test: ${descriptor}")
-    }
 }

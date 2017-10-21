@@ -18,7 +18,7 @@
     </bean>
  -->
 
-    <bean id="countryDao" class="lab.dao.CountryDao">
+    <bean id="countryDao" class="lab.dao.CountryDaoJDBC">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 </beans>
