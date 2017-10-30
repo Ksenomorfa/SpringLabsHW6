@@ -3,6 +3,7 @@ package lab.service;
 import lab.dao.CountryDao;
 import lab.dao.CountryDaoJDBC;
 import lab.model.Country;
+import lab.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,6 +35,10 @@ public class CountryServiceImpl implements CountryService {
         } else {
             return getAllCountries();
         }
+    }
+
+    public void saveCountry(Country country) {
+        countryDao.save(country);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

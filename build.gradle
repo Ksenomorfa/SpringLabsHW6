@@ -3,6 +3,7 @@ allprojects {
     version = '1.0-SNAPSHOT'
 }
 apply plugin: 'java'
+apply plugin: 'war'
 sourceCompatibility = targetCompatibility = 1.8
 
 compileJava {
@@ -30,7 +31,10 @@ test.testLogging.showStandardStreams = true
 
 dependencies {
     compile "org.springframework:spring-context:$springVersion",
-
+            'org.springframework:spring-web:+',
+            'org.springframework:spring-webmvc:+',
+            'javax.el:javax.el-api:+',
+            'javax.servlet:jstl:1.2',
             // AOP
             'org.aspectj:aspectjrt:+',
             'org.aspectj:aspectjweaver:+',
@@ -38,6 +42,7 @@ dependencies {
 
             // JDBC
             'com.mchange:c3p0:+',
+
             'org.springframework:spring-jdbc:+',
 
             // ORM
@@ -57,6 +62,10 @@ dependencies {
             'org.springframework:spring-test:+'
 
     compileOnly 'org.projectlombok:lombok:+',
+            'edu.washington.cs.types.checker:checker-framework:+',
+            // Tomcat
+            'org.apache.tomcat:tomcat-api:+',
+            'org.apache.tomcat:tomcat-jsp-api:+',
             'edu.washington.cs.types.checker:checker-framework:+'
 }
 

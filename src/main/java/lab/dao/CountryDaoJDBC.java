@@ -20,6 +20,7 @@ public class CountryDaoJDBC extends JdbcDaoSupport implements CountryDao {
     private static final String GET_COUNTRIES_BY_NAME_SQL = "select * from country where name like :name";
     private static final String GET_COUNTRY_BY_NAME_SQL = "select * from country where name = '";
     private static final String GET_COUNTRY_BY_CODE_NAME_SQL = "select * from country where code_name = '";
+    private static final String GET_COUNTRY_BY_ID_SQL = "select * from country where id = '";
     private static final String SAVE_COUNTRY_SQL = "INSERT INTO country (name, code_name) VALUES (?, ?);";
     private static final String UPDATE_COUNTRY_NAME_SQL_1 = "update country SET name='";
     private static final String UPDATE_COUNTRY_NAME_SQL_2 = " where code_name='";
@@ -52,6 +53,14 @@ public class CountryDaoJDBC extends JdbcDaoSupport implements CountryDao {
         JdbcTemplate jdbcTemplate = getJdbcTemplate();
         String sql = UPDATE_COUNTRY_NAME_SQL_1 + newCountryName +  "'" + UPDATE_COUNTRY_NAME_SQL_2 + codeName + "'";
         jdbcTemplate.execute(sql);
+    }
+
+    @Override
+    public Country select(int id) {
+            JdbcTemplate jdbcTemplate = getJdbcTemplate();
+            List<Country> countryList = jdbcTemplate.query(GET_COUNTRY_BY_ID_SQL
+                    + id + "'", COUNTRY_ROW_MAPPER);
+            return countryList.get(0);
     }
 
     public void loadCountries() {

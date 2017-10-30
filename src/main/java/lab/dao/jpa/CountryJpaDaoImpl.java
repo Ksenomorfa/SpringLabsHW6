@@ -32,7 +32,7 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
         return countryList;
     }
 
-    @Override
+
     public Country getCountryByName(String name) {
         EntityManager em = emf.createEntityManager();
         Country country = null;
@@ -45,4 +45,19 @@ public class CountryJpaDaoImpl extends AbstractJpaDao implements CountryDao {
         }
         return country;
     }
+
+    @Override
+    public Country select(int id) {
+        EntityManager em = emf.createEntityManager();
+        Country country = null;
+        if (em != null) {
+            country = em
+                    .createQuery("SELECT c FROM Country c WHERE c.id LIKE :id",
+                            Country.class).setParameter("id", id)
+                    .getSingleResult();
+            em.close();
+        }
+        return country;
+    }
+
 }

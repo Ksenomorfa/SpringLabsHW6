@@ -30,7 +30,8 @@ public class SimpleCountry implements Country {
     }
 
     @Override
-    public void setCodeName(String name) {
+    public void setCodeName(String codeName) {
         this.codeName = codeName;
     }
+
 }
